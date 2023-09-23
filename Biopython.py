@@ -19,7 +19,7 @@ print("Data type of sequence after importing library:", type(n))
 print("Original sequence:",n)
 print("complement of the original sequence:",n.complement())
 print("reverse of my original sequence",n.reverse_complement())
-print("Length of the the original sequence:",len(n))
+print("length of the the original sequence:",len(n))
 
 #Step 6: To parse simple fasta file, to get every sequence's id, length and 
 from Bio import SeqIO 
