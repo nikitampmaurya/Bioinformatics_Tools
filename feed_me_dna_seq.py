@@ -42,7 +42,7 @@ while True:
 print("The original sequence:",seq)
 print("The complement of original seq:",convert(seq))
 print("The reverse of original sequence",reverse_seq(seq))
-print("Length of the original sequence:", len(seq))
+print("Length of the original sequence:",len(seq))
 
 
 
