@@ -1,0 +1,64 @@
+Aim: To perform multiple sequence alignment using linux, bash, python and muscle.
+Description: The folder "myuniprotsids" contains all the uniprot ids. The folder "get_myuniprotdata.sh" contains the script to perform alignment. 
+The folder "convert_aln_to_clw" to transform the .aln file to .clw for visualization.
+
+Folder name: myuniprotsids
+P04637
+P02340
+P10361
+P79734
+
+Folder name: get_myuniprotdata.sh
+
+#!/bin/bash
+#the  shebang line  instructs the operating system to use bash shell for interpretating the entire script
+
+conda activate msa #activate the environment msa
+
+IDS=$(cat myuniprotids.txt)
+
+URL="http://www.uniprot.org/uniprot/"
+
+# this is a loop for downloading the data 
+
+for i in ${IDS}
+    do
+         echo "(o) Downloading Uniprot entry: ${i}"
+         #downloading uniprot entry
+         wget ${URL}${i}.fasta
+         echo "(o) Done downloading ${i}"
+         # construct muscle input
+         cat ${i}.fasta >> new_muscle_input.fasta
+         rm ${i}.fasta
+    done
+
+
+# run muscle to build Multiple sequence alignment
+muscle -align new_muscle_input.fasta -output new_muscle_output.aln #you can transform the output file in .clw as well. 
+
+Folder name:Convert_aln_to_clw
+from Bio import AlignIO
+
+# Define the input and output filenames
+input_filename = "new_muscle_output.aln"
+output_filename = "new_muscle_output.clw"
+
+# Read the input AFA file
+alignment = AlignIO.read(input_filename, "fasta")
+
+# Write the alignment to a CLUSTAL file
+AlignIO.write(alignment, output_filename, "clustal")
+
+#Ubuntu terminal
+cat new_muscle_output.clw | less
+
+
+
+
+
+
+
+
+
+
+
