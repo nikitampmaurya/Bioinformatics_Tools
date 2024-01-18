@@ -11,9 +11,9 @@ while True:
             print("Oops! your sequence has a number, please try again")
             break
             
-    else:
-        print("Thank you for feeding me")
-        break
+        else:
+            print("Thank you for feeding me")
+            break
 
 G_list = []
 C_list = []
